@@ -1,0 +1,20 @@
+{
+  "id": "photo-puppy-20261015",
+  "displayName": "사진 속 강아지",
+  "description": "살구색 털, 연두색 머리핀, 파란 줄무늬 옷을 살린 강아지. 휴식 중에는 약 7초마다 눈을 깜빡이고 작업 중에는 고개·꼬리·앞발을 조금 움직입니다.",
+  "spritesheetPath": "spritesheet.png",
+  "frame": { "width": 384, "height": 512 },
+  "fps": 8,
+  "defaultAnimation": "idle",
+  "animations": {
+    "idle": { "row": 0, "frames": 4, "frameDurationsMs": [4500, 100, 160, 2200] },
+    "running": { "row": 1, "frames": 4, "frameDurationsMs": [2500, 300, 300, 900] },
+    "waiting": { "row": 0, "frames": 4, "frameDurationsMs": [6500, 100, 160, 2400] },
+    "review": { "row": 1, "frames": 4, "frameDurationsMs": [3500, 280, 280, 1600] },
+    "waving": { "row": 1, "frames": 4, "frameDurationsMs": [900, 280, 280, 1400] },
+    "jumping": { "row": 1, "frames": 4, "frameDurationsMs": [350, 250, 250, 1100] },
+    "running-right": { "row": 1, "frames": 4, "frameDurationsMs": [700, 250, 250, 700] },
+    "running-left": { "row": 1, "frames": 4, "frameDurationsMs": [700, 250, 250, 700] },
+    "failed": { "row": 0, "frames": 4, "frameDurationsMs": [1200, 150, 400, 1500] }
+  }
+}

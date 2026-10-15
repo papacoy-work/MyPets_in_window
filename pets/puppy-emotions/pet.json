@@ -1,0 +1,22 @@
+{
+  "id": "photo-puppy-emotions-v2",
+  "displayName": "사진 속 강아지 · 감정 부자",
+  "description": "살구색 털·연두색 머리핀·파란 줄무늬 옷을 살린 20프레임 강아지. 점점 화남 → 웃음 → 삐짐 → 슬픔 → 애교 순서로 약 24초마다 감정이 바뀝니다.",
+  "spritesheetPath": "spritesheet.png",
+  "frame": { "width": 304, "height": 304 },
+  "fps": 8,
+  "defaultAnimation": "idle",
+  "animations": {
+    "idle": {
+      "row": 0,
+      "frames": 20,
+      "frameDurationsMs": [
+        2000, 650, 650, 2000,
+        600, 700, 700, 2200,
+        600, 700, 850, 2300,
+        650, 800, 1000, 2200,
+        700, 800, 950, 3200
+      ]
+    }
+  }
+}
