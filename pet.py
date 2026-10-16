@@ -9,7 +9,7 @@ from time import monotonic
 
 from PySide6.QtCore import QPointF, QRectF, Qt, QTimer
 from PySide6.QtGui import QIcon, QPainter, QPixmap, QPolygonF, QTransform
-from PySide6.QtWidgets import QApplication, QFileDialog, QLabel, QMenu, QMessageBox
+from PySide6.QtWidgets import QApplication, QFileDialog, QMenu, QMessageBox, QWidget
 
 
 ROOT = Path(__file__).resolve().parent
@@ -35,8 +35,7 @@ class Animation:
         position = elapsed_ms % sum(self.durations)
         for index, duration in enumerate(self.durations):
             if position < duration:
-                transition = duration if self.interpolate else min(60, duration / 4)
-                blend = max(0.0, (position - duration + transition) / transition)
+                blend = position / duration if self.interpolate else 0.0
                 blend = blend * blend * (3 - 2 * blend)
                 return index, (index + 1) % len(self.frames), blend
             position -= duration
@@ -102,16 +101,19 @@ class Pet:
             raise ValueError("defaultAnimation이 animations에 없습니다.")
 
 
-class PetWindow(QLabel):
+class PetWindow(QWidget):
     def __init__(self, pets: list[Pet]):
         super().__init__()
         self.pets = pets
         self.display_width = 192
         self.paused = False
         self.drag_offset = None
+        self.current_frame = QPixmap()
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.Tool)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_NoSystemBackground)
         self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating)
+        self.setAutoFillBackground(False)
         self.setCursor(Qt.CursorShape.OpenHandCursor)
         self.timer = QTimer(self)
         self.timer.setTimerType(Qt.TimerType.PreciseTimer)
@@ -158,7 +160,7 @@ class PetWindow(QLabel):
             return
         self.last_render_key = key
         if blend == 0 and not animation.motion:
-            self.setPixmap(self.scaled_frames[index])
+            self.present_frame(self.scaled_frames[index])
             return
         canvas = QPixmap(self.size())
         canvas.fill(Qt.GlobalColor.transparent)
@@ -174,7 +176,7 @@ class PetWindow(QLabel):
             bounds.adjust(width * .04, height * .04, -width * .04, -height * .04)
             self.draw_hula(painter, animation.frames[0], bounds, phase)
             painter.end()
-            self.setPixmap(canvas)
+            self.present_frame(canvas)
             return
         painter.setOpacity(1 - blend)
         painter.drawPixmap(bounds, animation.frames[index], QRectF(animation.frames[index].rect()))
@@ -183,7 +185,20 @@ class PetWindow(QLabel):
             painter.setOpacity(blend)
             painter.drawPixmap(bounds, animation.frames[following], QRectF(animation.frames[following].rect()))
         painter.end()
-        self.setPixmap(canvas)
+        self.present_frame(canvas)
+
+    def present_frame(self, frame):
+        self.current_frame = frame
+        self.update()
+
+    def pixmap(self):
+        return self.current_frame
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setCompositionMode(QPainter.CompositionMode.CompositionMode_Source)
+        painter.drawPixmap(0, 0, self.current_frame)
+        painter.end()
 
     @staticmethod
     def draw_hula(painter, frame, bounds, phase):

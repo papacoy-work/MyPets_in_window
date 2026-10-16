@@ -106,6 +106,26 @@ class PetTests(unittest.TestCase):
         finally:
             window.close()
 
+    def test_default_frames_keep_full_opacity_and_paint_atomically(self):
+        window = PetWindow([self.emotions])
+        try:
+            for time, expected_index in ((0, 0), (1999, 0), (2000, 1), (2649, 1), (2650, 2)):
+                with self.subTest(time=time):
+                    window.render_frame(time)
+                    expected = window.scaled_frames[expected_index].toImage()
+                    self.assertEqual(window.pixmap().toImage(), expected)
+                    self.assertEqual(window.grab().toImage(), expected)
+            window.set_animation("hula")
+            for time in (0, 200, 800, 1600, 2399):
+                window.render_frame(time)
+                expected = window.pixmap().toImage()
+                self.assertFalse(expected.isNull())
+                self.assertEqual(window.grab().toImage(), expected)
+            window.move(30, 40)
+            self.assertEqual(window.grab().toImage(), window.pixmap().toImage())
+        finally:
+            window.close()
+
     @patch("pet.monotonic")
     def test_hula_catches_up_after_delayed_tick_and_resumes_without_jumping(self, clock):
         clock.return_value = 10.0
