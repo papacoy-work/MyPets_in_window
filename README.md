@@ -4,12 +4,12 @@ Orca 없이 실행하는 Windows용 바탕화면 펫. Python과 PySide6로 만�
 
 ## 다운로드
 
-[**Windows 실행 파일 다운로드 — MyPets.exe**](https://github.com/pup996/MyPets_in_window/releases/latest/download/MyPets.exe)
+[**Windows 실행 파일 다운로드 — MyPets.exe**](https://github.com/papacoy-work/MyPets_in_window/releases/latest/download/MyPets.exe)
 
 Windows 10/11 64비트(x64)용입니다. 파일 크기는 약 46MB이며, 다운로드한 `MyPets.exe`를 더블클릭하면 됩니다.
 Python이나 Orca를 따로 설치할 필요가 없습니다. 기본 펫 2종도 실행 파일 안에 들어 있습니다.
 
-[릴리스 목록 및 이전 버전](https://github.com/pup996/MyPets_in_window/releases)
+[릴리스 목록 및 이전 버전](https://github.com/papacoy-work/MyPets_in_window/releases)
 
 ## 사용법
 
