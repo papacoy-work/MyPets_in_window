@@ -6,7 +6,7 @@ Orca 없이 실행하는 Windows용 바탕화면 펫. Python과 PySide6로 만�
 
 [**Windows 실행 파일 다운로드 — MyPets.exe**](https://github.com/papacoy-work/MyPets_in_window/releases/latest/download/MyPets.exe)
 
-Windows 10/11 64비트(x64)용입니다. 파일 크기는 약 46MB이며, 다운로드한 `MyPets.exe`를 더블클릭하면 됩니다.
+Windows 10/11 64비트(x64)용입니다. 다운로드한 `MyPets.exe`를 더블클릭하면 됩니다.
 Python이나 Orca를 따로 설치할 필요가 없습니다. 기본 펫 2종도 실행 파일 안에 들어 있습니다.
 
 [릴리스 목록 및 이전 버전](https://github.com/papacoy-work/MyPets_in_window/releases)
@@ -15,6 +15,8 @@ Python이나 Orca를 따로 설치할 필요가 없습니다. 기본 펫 2종도
 
 - 펫을 드래그하면 위치를 옮길 수 있습니다.
 - 펫을 우클릭하면 펫 선택, 동작 변경, 크기 조절, 일시정지, 종료 메뉴가 나옵니다.
+- **동작 → 훌라춤**을 선택하면 코이가 풀치마를 입고 훌라춤을 춥니다. 두 펫 모두 사용할 수 있습니다.
+- 약 60fps로 갱신하며 포즈 사이 전환과 몸 흔들림을 연결합니다. 일시정지 후에는 멈췄던 지점에서 이어집니다.
 - 펫은 일반 창보다 위에 표시됩니다. 전체 화면 게임 등의 위에 표시되는지는 실행 환경에 따라 다릅니다.
 - 기본 제공 펫은 눈을 깜빡이는 강아지와 여러 표정이 바뀌는 강아지 2종입니다.
 - 인터넷, Orca, AI 서비스 로그인 없이 동작합니다.
@@ -38,7 +40,8 @@ python -m venv .venv
 powershell -ExecutionPolicy Bypass -File .\build.ps1
 ```
 
-결과물은 `dist/MyPets.exe`입니다. 기본 펫 이미지도 포함된 단일 실행 파일입니다.
+결과물은 프로젝트 폴더의 `MyPets.exe`와 `dist/MyPets.exe`입니다. 기본 펫 이미지도 포함된 단일 실행 파일입니다.
+빌드 전에 실행 중인 MyPets를 종료하세요. 시작프로그램 바로가기는 프로젝트 폴더의 `MyPets.exe`를 가리키면 됩니다.
 Python과 Qt 런타임을 함께 포함하므로 소스보다 용량이 큽니다. 첫 실행 때 압축 해제로 잠시 시간이 걸릴 수 있습니다.
 Windows 실행 파일은 Windows에서 빌드합니다.
 
@@ -73,6 +76,9 @@ pets/
 
 PNG는 투명 배경을 사용합니다. 한 행에 프레임을 왼쪽부터 배치하고, `row`는 0부터 셉니다.
 `frameDurationsMs`를 생략하면 `fps`를 사용합니다. 프레임별 재생 시간을 지정하면 `fps`보다 우선합니다.
+여러 행에 배치한 이미지는 동작 설정에 `columns`를 지정합니다. 왼쪽부터 읽고 다음 행으로 이어집니다.
+동작별 `spritesheetPath`와 `frame`으로 별도 이미지를 지정할 수 있습니다. 경로는 해당 `pet.json` 폴더 안에서 찾습니다.
+`interpolate: true`는 포즈 사이를 연속 전환합니다. `motion: "hula"`는 첫 포즈를 기준으로 팔·허리·치마를 연속 변형하며, `frameDurationsMs`의 합계가 춤의 한 주기가 됩니다.
 이 프로그램은 이미 만들어진 펫을 재생합니다. 펫 이미지 생성이나 Orca 작업 상태 연동 기능은 포함하지 않습니다.
 
 ## 검증

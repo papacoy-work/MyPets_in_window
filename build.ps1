@@ -7,7 +7,12 @@ try {
     }
     & $pythonPath -m PyInstaller --noconfirm --onefile --windowed --name MyPets --add-data 'pets;pets' pet.py
     if ($LASTEXITCODE -ne 0) { throw 'Executable build failed.' }
-    Write-Host 'Distribution: dist/MyPets.exe'
+    try {
+        Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'dist/MyPets.exe') -Destination (Join-Path $PSScriptRoot 'MyPets.exe') -ErrorAction Stop
+    } catch {
+        throw 'Built dist/MyPets.exe. Close the running MyPets app before copying it to MyPets.exe in the project root.'
+    }
+    Write-Host 'Distribution: MyPets.exe (also in dist/MyPets.exe)'
 } finally {
     Pop-Location
 }

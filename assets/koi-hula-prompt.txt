@@ -1,0 +1,19 @@
+Created with the built-in imagegen tool. Reference: the existing Koi puppy idle frame.
+
+INITIAL PROMPT
+
+Use case: identity-preserve.
+Asset type: production transparent sprite sheet for a Python desktop pet animation.
+Edit target / character reference: the attached image is Koi, a tiny fluffy apricot toy poodle puppy with a round face, black eyes and nose, floppy ears, a small lime green hair clip and a light blue-and-white striped shirt. Preserve this EXACT recognizable puppy identity, fur coloring, face proportions, hair clip, shirt and soft realistic plush-like rendering.
+Primary request: create ONE seamless looping HAWAIIAN HULA DANCE animation sprite sheet of Koi. Koi stands cutely on the two hind paws and dances, with the front paws extended in gentle hula hand gestures, the hips swaying left and right, tiny knee bends and head counter-sway. A short simple green grass hula skirt over the lower part of the blue striped shirt is appropriate. Keep Koi sweet and happy.
+Composition: a SQUARE canvas with an EXACT 4 by 4 equal-size tile layout, 16 animation frames total in row-major order (left to right, top to bottom). Each tile is one 256 by 256 logical frame on a 1024 by 1024 canvas. No tile lines. Each pose stays centered at the SAME baseline and SAME camera scale, fully visible with generous padding so paws and ears never touch neighboring tiles. A single character per tile, exactly 16 characters total.
+Animation: the 16 cells are closely spaced consecutive in-between poses across ONE complete slow hula cycle, phases 0,22.5,45,...337.5 degrees. First 4 frames smoothly sway to one side, middle 8 frames smoothly travel across to the opposite side, final 4 smoothly return toward the starting pose. Frame 15 must transition naturally back to frame 0. Change pose only subtly between neighbors; keep the head silhouette and shirt details consistent in every frame. The ears and skirt follow the sway. Both front paws are recognizable puppy paws, never human fingers. No drastic expression or camera changes.
+Background: genuine transparent alpha throughout all empty space and between all sprites. Clean soft fur edges, no white rectangular remnants, no checkerboard drawn into pixels, no floor or shadow slab.
+Text: none. No captions, numbers, watermarks, borders, scenery or extra objects.
+
+ALPHA CLEANUP PROMPT
+
+Edit this exact 4x4 transparent sprite sheet. Make ONE targeted correction: clean the alpha cutout around every puppy.
+Remove ALL stray white, yellow, pink and black background flecks, halos, rectangles and noisy matte debris outside the actual dog fur, clothing and grass skirt silhouettes. All gaps between sprites and all outer background MUST be perfectly transparent, with clean natural antialiased fur edges. The colored/white speckles visible outside the dogs are defects, NOT part of the character. Do not replace the defects with any solid background.
+Keep the 4 by 4 equal-cell grid, canvas aspect ratio, all sixteen hula dancing puppy poses, exact position and scale within each cell, apricot fur, green hair clip, blue-and-white striped shirt and green hula skirt. Preserve Koi's identity and expression. No text, no borders, no new elements. Output a production-ready PNG with genuine alpha transparency.
+
