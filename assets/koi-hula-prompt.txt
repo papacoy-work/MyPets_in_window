@@ -16,4 +16,3 @@ ALPHA CLEANUP PROMPT
 Edit this exact 4x4 transparent sprite sheet. Make ONE targeted correction: clean the alpha cutout around every puppy.
 Remove ALL stray white, yellow, pink and black background flecks, halos, rectangles and noisy matte debris outside the actual dog fur, clothing and grass skirt silhouettes. All gaps between sprites and all outer background MUST be perfectly transparent, with clean natural antialiased fur edges. The colored/white speckles visible outside the dogs are defects, NOT part of the character. Do not replace the defects with any solid background.
 Keep the 4 by 4 equal-cell grid, canvas aspect ratio, all sixteen hula dancing puppy poses, exact position and scale within each cell, apricot fur, green hair clip, blue-and-white striped shirt and green hula skirt. Preserve Koi's identity and expression. No text, no borders, no new elements. Output a production-ready PNG with genuine alpha transparency.
-
